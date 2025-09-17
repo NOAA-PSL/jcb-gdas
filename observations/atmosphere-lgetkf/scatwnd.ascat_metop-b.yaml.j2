@@ -4,6 +4,9 @@
   # -----------------------
   obs space:
     name: ascatw_ascat_metop-b
+    distribution:
+      name: "{{distribution_type}}"
+      halo size: 1250e3
     obsdatain:
       engine:
         type: H5File
@@ -46,6 +49,8 @@
     use_reduced_horizontal_grid: true
     round_horizontal_bin_count_to_nearest: true
     partition_longitude_bins_using_mesh: true
+    action:
+      name: reduce obs space
 
   # Observation Prior Filters (QC)
   # ------------------------------
@@ -302,6 +307,13 @@
   #    inflation factor: 1.25
   # END OF FILTERS#
 
+
+  # Observation Localizations (LocalEnsembleDA)
+  # -------------------------------------------
+  obs localizations:
+  - localization method: Horizontal Gaspari-Cohn
+    lengthscale: 1250e3
+    max nobs: 10000
 
   # GeoVaLs for Driving Observation Operators (testing mode)
   # --------------------------------------------------------
