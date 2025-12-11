@@ -8,6 +8,7 @@
       engine:
         type: H5File
         obsfile: "{{atmosphere_obsdatain_path}}/{{atmosphere_obsdatain_prefix}}{{observation_from_jcb}}{{atmosphere_obsdatain_suffix}}"
+        missing file action: warn
     obsdataout:
       engine:
         type: H5File
@@ -132,7 +133,7 @@
           - name: ObsValue/cloudFree
           coefs: [100]
 
-  # Step 6: Create cloudFree variable 
+  # Step 6: Data Thinning 
   - filter: Gaussian Thinning
     filter variables:
     - name: brightnessTemperature
